@@ -1,7 +1,8 @@
 import { View, Text, FlatList, ActivityIndicator } from 'react-native'
 import React, {useState, useEffect} from 'react'
 import {REACT_APP_DENEME} from '@env';
-
+import Loading from '../../components/Loading'
+import Error from '../../components/Error'
 
 import ProductCard from '../../components/ProductCard'
 import useFetch from '../../hooks/useFetch';
@@ -14,11 +15,11 @@ export default function Product() {
   const renderProduct = ({item}) => <ProductCard product={item}/>;
 
   if(loading){
-    return <ActivityIndicator size = 'large'/>
+    return <Loading />
   }
   
   if(error){
-    return <Text>{error}</Text>
+    return <Error />
   }
 
   return (
