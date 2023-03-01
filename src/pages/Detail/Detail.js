@@ -1,32 +1,28 @@
-import { View, Text, Image} from 'react-native'
+
+
+import { View, Text, Image } from 'react-native'
 import React from 'react'
 import styles from './Detail.style'
-
-import {REACT_APP_DENEME} from '@env';
 import useFetch from '../../hooks/useFetch'
 import Loading from '../../components/Loading';
-import Error from '../../components/Error';
+import {REACT_APP_DENEME} from '@env';
 
 export default function Detail({route}) {
   const {id} = route.params;
-  const {loading, error, data} = useFetch(`${REACT_APP_DENEME}/${id}`)
+  const {loading, data} = useFetch(`${REACT_APP_DENEME}/${id}`);
 
-  if(loading){
+  if (loading) {
     return <Loading />
-  }
-  
-  if(error){
-    return <Error />
   }
 
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={{uri : data.image}} />
+      <Image source={{uri: data.image}} style={styles.image} />
       <View style={styles.body_container}>
-      <Text style={styles.title}>{data.title}</Text>
-      <Text style={styles.desc}>{data.description}</Text>
-      <Text style={styles.price}>{data.price} TL</Text>
+        <Text style={styles.title}>{data.title}</Text>
+        <Text style={styles.desc}>{data.description}</Text>
+        <Text style={styles.price}>{data.price}</Text>
       </View>
     </View>
-  )
-}
+  );
+};
